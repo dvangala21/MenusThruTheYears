@@ -56,10 +56,16 @@ def index():
 #     # Return a list of the column names (sample names)
 #     return jsonify(list(df.columns)[2:])
 
+@app.route("/hello")
+def hello(): 
+    dish = Dish.NAME
+    return jsonify(Dish.NAME)
+
 
 @app.route("/Dish/<name>")
 def dish(name):
     """Return the data for a given Dish Name."""
+    
     sel = [
         Dish.NAME,
         Dish.MENUS_APPEARED,
