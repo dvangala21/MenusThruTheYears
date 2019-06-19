@@ -10,6 +10,8 @@ from sqlalchemy import create_engine
 
 from flask import Flask, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
+from db_config import DATABASE_URL
+# pip install mysqlclient
 
 app = Flask(__name__)
 
@@ -18,19 +20,23 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/restaurant_menus.sqlite"
-db = SQLAlchemy(app)
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/Dish.sqlite"
+# db = SQLAlchemy(app)
 
 # reflect an existing database into a new model
 Base = automap_base()
+
+#"sqlite:///Dish.db"
+engine = create_engine(DATABASE_URL)
+
 # reflect the tables
-Base.prepare(db.engine, reflect=True)
+Base.prepare(engine, reflect=True)
 
 # Save references to each table
 Dish = Base.classes.Dish
-Menu = Base.classes.menu
-Menu_Item = Base.classes.Menu_Item
-Menu_Page = Base.classes.Menu_Page
+# Menu = Base.classes.menu
+# Menu_Item = Base.classes.Menu_Item
+# Menu_Page = Base.classes.Menu_Page
 
 
 @app.route("/")
@@ -39,16 +45,16 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/Dish")
-def names():
-    """Return Column Headers."""
+# @app.route("/Dish")
+# def names():
+#     """Return Column Headers."""
 
-    # Use Pandas to perform the sql query
-    stmt = db.session.query(Dish).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
+#     # Use Pandas to perform the sql query
+#     stmt = db.session.query(Dish).statement
+#     df = pd.read_sql_query(stmt, db.session.bind)
 
-    # Return a list of the column names (sample names)
-    return jsonify(list(df.columns)[2:])
+#     # Return a list of the column names (sample names)
+#     return jsonify(list(df.columns)[2:])
 
 
 @app.route("/Dish/<name>")
@@ -76,34 +82,34 @@ def dish(name):
     print(Dish_data)
     return jsonify(Dish_data)
 
-@app.route("/Menu/<name>")
-def menu(name):
-    """Return the data for a given Menu Name."""
-    sel = [
-        Menu.NAME,
-        Menu.SPONSOR,
-        Menu.DATE, 
-        Menu.LOCATION, 
-        Menu.CURRENCY,
-        Menu.PAGE_COUNT, 
-        Menu.DISH_COUNT
-    ]
+# @app.route("/Menu/<name>")
+# def menu(name):
+#     """Return the data for a given Menu Name."""
+#     sel = [
+#         Menu.NAME,
+#         Menu.SPONSOR,
+#         Menu.DATE, 
+#         Menu.LOCATION, 
+#         Menu.CURRENCY,
+#         Menu.PAGE_COUNT, 
+#         Menu.DISH_COUNT
+#     ]
 
-    results = db.session.query(*sel).filter(Menu.Name == name).all()
+#     results = db.session.query(*sel).filter(Menu.Name == name).all()
 
-    # Create a dictionary entry for each row of metadata information
-    Menu_Data = {}
-    for result in results:
-        Menu_Data["NAME"] = result[0]
-        Menu_Data["SPONSOR"] = result[1]
-        Menu_Data["DATE"] = result[2]
-        Menu_Data["LOCATION"] = result[3]
-        Menu_Data["CURRENCY"] = result[4]
-        Menu_Data["PAGE_COUNT"] = result[5]
-        Menu_Data["DISH_COUNT"] = result[6]
+#     # Create a dictionary entry for each row of metadata information
+#     Menu_Data = {}
+#     for result in results:
+#         Menu_Data["NAME"] = result[0]
+#         Menu_Data["SPONSOR"] = result[1]
+#         Menu_Data["DATE"] = result[2]
+#         Menu_Data["LOCATION"] = result[3]
+#         Menu_Data["CURRENCY"] = result[4]
+#         Menu_Data["PAGE_COUNT"] = result[5]
+#         Menu_Data["DISH_COUNT"] = result[6]
 
-    print(Menu_Data)
-    return jsonify(Menu_Data)
+#     print(Menu_Data)
+#     return jsonify(Menu_Data)
 
 
 
