@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(
+                [['Decade', 'Count', 'Avg Px'],
+                ['1850', 1455, 1455],
+                ['1860', 1155, 2000],
+                ['1870', 92, 1496],
+                ['1880', 4198, 0721],
+                ['1890', 14535, 0629],
+                ['1900', 84137, 1093],
+                ['1910', 82021, 1857],
+                ['1920', 8239, 1341],
+                ['1930', 29951, 0718],
+                ['1940', 25591, 1288],
+                ['1950', 38556, 1196],
+                ['1960', 36526, 1353],
+                ['1970', 18752, 2114],
+                ['1980', 16761, 5048],
+                ['1990', 3455, 8055],
+                ['2000', 1470, 9752],
+                ['2010', 1003, 8439]]
+            );
+
+            var options = {
+                title: 'Dishes over the years',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+</body>
+
+</html>
