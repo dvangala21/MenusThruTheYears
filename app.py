@@ -1,3 +1,6 @@
+
+# This app is currently broken. We attempted to connect to the Google Cloud but did not get time to fix the flask routes. 
+
 import os
 
 import pandas as pd
