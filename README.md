@@ -1,7 +1,5 @@
 # MenusThruTheYears
 
-(Work In Progress) 
+Intended to be a dashboard using datasets from the following link - https://data.world/data-society/discover-the-menu
 
-A dashboard using datasets from the following link - https://data.world/data-society/discover-the-menu
-
-Providing the ability to filter by decade and see visualizations based on data from that decade
+Project 2 of NUCHIDATA 2019 Bootcamp
