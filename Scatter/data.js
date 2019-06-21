@@ -8,7 +8,7 @@ var data = {
     "Cream cheese with bar-le-duc jelly",
     "Krug, Private Cuvee",
     "TENDERLOIN STEAK WITH PEAS",
-    "Jumbo Shrimp Cocktail
+    "Jumbo Shrimp Cocktail",
     "Roast Rack and Saddle of Lamb, Mint Jelly and Corn in Green Pepper",
     "Helados diversos",
     "Caviar Romanoff 4 onzas",
@@ -16,10 +16,10 @@ var data = {
     "luso",
     "KRUG, GRANDE CUVEE, BRUT CHAMPAGNE NV",
     "2001 The Vertical Limit: 1/2 bottle of 95, 96, 97 Opus One (3 1/2 Bottles)",
-    "Cabernet Sauvignon, "Cask 23", Stag's Leap, 1987. (Napa Valley)"
+    "Cabernet Sauvignon, Cask 23, Stag's Leap, 1987. (Napa Valley)"
   ],
   Lowest_Price: [
-    0.85
+    0.85,
     0,
     0,
     0.2,
